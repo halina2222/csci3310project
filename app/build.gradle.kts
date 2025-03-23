@@ -57,6 +57,8 @@ dependencies {
     implementation(platform("androidx.compose:compose-bom:2024.12.01"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
+    implementation(libs.androidx.scenecore)
+    implementation(libs.androidx.navigation.compose)
     debugImplementation("androidx.compose.ui:ui-tooling")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
@@ -68,6 +70,12 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
     implementation("com.airbnb.android:lottie-compose:6.0.0")
+
+    implementation ("com.google.accompanist:accompanist-permissions:0.31.2-alpha")
+    implementation ("androidx.camera:camera-camera2:1.2.3")
+    implementation ("androidx.camera:camera-lifecycle:1.2.3")
+    implementation ("androidx.camera:camera-view:1.2.3")
+    implementation ("com.google.guava:guava:31.1-android")
+    implementation ("com.google.mlkit:face-detection:16.1.5")
 }
