@@ -1,4 +1,4 @@
-package com.example.login.login_screen
+package com.example.login.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -46,7 +46,10 @@ import com.example.login.R
 
 
 @Composable
-fun LoginScreen(paddingValues: PaddingValues, onNavigateToCameraScreen: () -> Unit = {}){
+fun LoginScreen(paddingValues: PaddingValues,
+                onNavigateToCameraScreen: () -> Unit = {},
+                onNavigateToRegister: () -> Unit = {},
+                onNavigateToForgetPw: () -> Unit = {} ){
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
@@ -85,6 +88,7 @@ fun LoginScreen(paddingValues: PaddingValues, onNavigateToCameraScreen: () -> Un
         TextField(
             value = username,
             onValueChange = {username = it},
+            singleLine = true,
             label = { Text(nameError.ifEmpty { "Username" },color = if (nameError.isNotEmpty()) Red else Unspecified ) },
             leadingIcon = {
                 Icon(
@@ -93,7 +97,9 @@ fun LoginScreen(paddingValues: PaddingValues, onNavigateToCameraScreen: () -> Un
 
             },
             shape = RoundedCornerShape(8.dp),
-            modifier = Modifier.width(260.dp).padding(vertical = 4.dp, horizontal = 20.dp),
+            modifier = Modifier
+                .width(260.dp)
+                .padding(vertical = 4.dp, horizontal = 20.dp),
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = Transparent,
                 unfocusedIndicatorColor = Transparent
@@ -103,6 +109,7 @@ fun LoginScreen(paddingValues: PaddingValues, onNavigateToCameraScreen: () -> Un
         TextField(
             value = password,
             onValueChange = {password = it},
+            singleLine = true,
             label = { Text(passwordError.ifEmpty { "Password" },color = if (passwordError.isNotEmpty()) Red else Unspecified ) },
             leadingIcon = {
                 Icon(
@@ -119,11 +126,15 @@ fun LoginScreen(paddingValues: PaddingValues, onNavigateToCameraScreen: () -> Un
                     painter = image,
                     contentDescription = "",
 
-                    modifier = Modifier.size(24.dp).clickable{passwordVisible = !passwordVisible }
+                    modifier = Modifier
+                        .size(24.dp)
+                        .clickable { passwordVisible = !passwordVisible }
                 )
             },
             shape = RoundedCornerShape(8.dp),
-            modifier = Modifier.width(260.dp).padding(vertical = 4.dp, horizontal = 20.dp),
+            modifier = Modifier
+                .width(260.dp)
+                .padding(vertical = 4.dp, horizontal = 20.dp),
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = Transparent,
                 unfocusedIndicatorColor = Transparent
@@ -137,7 +148,9 @@ fun LoginScreen(paddingValues: PaddingValues, onNavigateToCameraScreen: () -> Un
                     onNavigateToCameraScreen() // Use the callback instead of direct navigation
                 }
             },
-            modifier = Modifier.width(200.dp).padding(15.dp)
+            modifier = Modifier
+                .width(200.dp)
+                .padding(15.dp)
         ){
             Text(text = "Login")
         }
@@ -145,6 +158,7 @@ fun LoginScreen(paddingValues: PaddingValues, onNavigateToCameraScreen: () -> Un
         Text(text = "Forget Password",
             color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.clickable{
+                onNavigateToForgetPw()
 
             })
         Spacer(modifier = Modifier.height(10.dp))
@@ -152,7 +166,7 @@ fun LoginScreen(paddingValues: PaddingValues, onNavigateToCameraScreen: () -> Un
         Text(text = "Not a member?\n Sign in Now!",
              color = MaterialTheme.colorScheme.primary,
              modifier = Modifier.clickable{
-
+                 onNavigateToRegister()
                 },
             )
 
